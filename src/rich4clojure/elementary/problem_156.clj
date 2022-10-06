@@ -18,7 +18,8 @@
 ;; default value and a sequence of keys and constructs a
 ;; map.
 
-(def __ :tests-will-fail)
+(def __ (fn [default-value k]
+          (reduce #(assoc %1 %2 default-value) {} k)))
 
 (comment
   

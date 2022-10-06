@@ -10,7 +10,7 @@
 ;; superset of A, if A is "contained" inside B. A and B
 ;; may coincide.
 
-(def __ :tests-will-fail)
+(def __ #{1 2})
 
 (comment
   

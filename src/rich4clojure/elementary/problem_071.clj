@@ -14,7 +14,7 @@
 ;; the forms. Using -> can sometimes make your code more
 ;; readable.
 
-(def __ :tests-will-fail)
+(def __ last)
 
 (comment
   

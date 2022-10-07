@@ -10,7 +10,8 @@
 
 (def restricted [reverse rseq])
 
-(def __ :tests-will-fail)
+(def __ (fn [coll]
+          (reduce #(cons %2 %1) '() coll)))
 
 (comment
   

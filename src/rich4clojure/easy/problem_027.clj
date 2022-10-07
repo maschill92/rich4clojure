@@ -12,7 +12,7 @@
 ;; 
 ;; Hint: "racecar" does not equal '(\r \a \c \e \c \a \r)
 
-(def __ :tests-will-fail)
+(def __ (fn [x] (= x (reverse x))))
 
 (comment
   

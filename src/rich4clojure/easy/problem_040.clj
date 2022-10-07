@@ -11,10 +11,12 @@
 
 (def restricted [interpose])
 
-(def __ :tests-will-fail)
+(def __ (fn [v l]
+          (apply vector (mapcat #(vector %1 v) (drop-last l)) (last l))))
 
 (comment
-  
+  (def v 0)
+  (def l [1 2 3])
   )
 
 (tests

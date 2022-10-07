@@ -9,10 +9,10 @@
 ;; Write a function which packs consecutive duplicates
 ;; into sub-lists.
 
-(def __ :tests-will-fail)
+(def __ (fn [x] (partition-by identity x)))
 
 (comment
-  
+  (map seq (vals (group-by identity x)))
   )
 
 (tests

@@ -9,7 +9,8 @@
 ;; Write a function which returns the sum of a sequence of
 ;; numbers.
 
-(def __ :tests-will-fail)
+(def __ (fn [coll]
+          (reduce #(+ %1 %2) 0 coll)))
 
 (comment
   

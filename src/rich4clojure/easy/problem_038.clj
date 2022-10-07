@@ -11,16 +11,19 @@
 
 (def restricted [max max-key])
 
-(def __ :tests-will-fail)
+(def __ (fn [& x]
+          (reduce #(if (> %1 %2) %1 %2) x)))
 
 (comment
-  
-  )
+  (def x '(1 8 3 5))
+  (let [x '(1 8 3 5)]
+    (reduce #(if (> %1 %2) %1 %2) x)))
+
 
 (tests
-  (__ 1 8 3 4) := 8
-  (__ 30 20) := 30
-  (__ 45 67 11) := 67)
+ (__ 1 8 3 4) := 8
+ (__ 30 20) := 30
+ (__ 45 67 11) := 67)
 
 ;; Share your solution, and/or check how others did it:
 ;; https://gist.github.com/3d8cce63160543ce69b40bc041174b28

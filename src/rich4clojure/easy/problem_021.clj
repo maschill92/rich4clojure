@@ -11,7 +11,13 @@
 
 (def restricted [nth])
 
-(def __ :tests-will-fail)
+(def __ (fn [coll idx]
+          (loop [n 0
+                 loop-col coll]
+            (if 
+             (= n idx) 
+            (first loop-col)
+              (recur (inc n) (rest loop-col))))))
 
 (comment
   

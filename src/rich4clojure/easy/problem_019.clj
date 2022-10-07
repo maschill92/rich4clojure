@@ -11,7 +11,7 @@
 
 (def restricted [last])
 
-(def __ :tests-will-fail)
+(def __ (fn [col] (first (reverse col))))
 
 (comment
   

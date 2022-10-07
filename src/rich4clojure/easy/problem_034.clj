@@ -11,7 +11,12 @@
 
 (def restricted [range])
 
-(def __ :tests-will-fail)
+(def __ (fn [start end]
+          (loop [i start
+                 l []]
+            (if (= i end)
+              (seq l)
+              (recur (inc i) (conj l i))))))
 
 (comment
   

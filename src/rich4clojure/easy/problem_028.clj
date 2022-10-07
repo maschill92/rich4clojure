@@ -10,7 +10,8 @@
 
 (def restricted [flatten])
 
-(def __ :tests-will-fail)
+(def __ (fn [coll] (filter (complement sequential?)
+                           (rest (tree-seq sequential? seq coll)))))
 
 (comment
   

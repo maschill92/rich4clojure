@@ -9,7 +9,7 @@
 ;; Write a function which removes consecutive duplicates
 ;; from a sequence.
 
-(def __ :tests-will-fail)
+(def __ (fn [x] (dedupe (vec x))))
 
 (comment
   

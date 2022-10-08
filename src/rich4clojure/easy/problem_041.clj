@@ -9,16 +9,22 @@
 ;; Write a function which drops every Nth item from a
 ;; sequence.
 
-(def __ :tests-will-fail)
+(def __ (fn [l x]
+          (apply vector
+                 (keep-indexed
+                  #(when
+                    (not= 0 (mod (inc %1) x))
+                     %2)
+                  l))))
 
 (comment
-  
-  )
+  (def l [1 2 3 4 5 6 7 8])
+  (def x 3))
 
 (tests
-  (__ [1 2 3 4 5 6 7 8] 3) := [1 2 4 5 7 8]
-  (__ [:a :b :c :d :e :f] 2) := [:a :c :e]
-  (__ [1 2 3 4 5 6] 4) := [1 2 3 5 6])
+ (__ [1 2 3 4 5 6 7 8] 3) := [1 2 4 5 7 8]
+ (__ [:a :b :c :d :e :f] 2) := [:a :c :e]
+ (__ [1 2 3 4 5 6] 4) := [1 2 3 5 6])
 
 ;; Share your solution, and/or check how others did it:
 ;; https://gist.github.com/03788b118a3d7923f7aae143e8ef1aee

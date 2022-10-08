@@ -8,7 +8,10 @@
 ;; Given two integers, write a function which returns the
 ;; greatest common divisor.
 
-(def __ :tests-will-fail)
+(def __ (fn [x y]
+          (if (zero? y)
+            x
+            (recur x (mod y x)))))
 
 (comment
   

@@ -8,10 +8,10 @@
 ;; 
 ;; Write a function which calculates factorials.
 
-(def __ :tests-will-fail)
+(def __ (fn [i] (apply * (range 1 (inc i)))))
 
 (comment
-  
+  (def l (range 1 (inc 8)))
   )
 
 (tests

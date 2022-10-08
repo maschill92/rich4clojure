@@ -12,7 +12,9 @@
 
 (def restricted [iterate])
 
-(def __ :tests-will-fail)
+(def __ (fn [f x]
+          (lazy-seq
+           (cons x (__ f (f x))))))
 
 (comment
   

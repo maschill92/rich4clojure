@@ -14,18 +14,28 @@
 
 (def restricted [group-by])
 
-(def __ :tests-will-fail)
+(def __ (fn [f l]
+          (reduce
+           (fn [ret x]
+             (let [f-of-x (f x)]
+               (assoc
+                ret
+                f-of-x
+                (conj (get ret f-of-x []) x))))
+           {}
+           l)))
 
 (comment
-  
-  )
+
+  (def f #(> % 5))
+  (def l [1 3 6 8]))
 
 (tests
-  (__ #(> % 5) [1 3 6 8]) := {false [1 3], true [6 8]}
-  (__ #(apply / %) [[1 2] [2 4] [4 6] [3 6]]) :=
-   {1/2 [[1 2] [2 4] [3 6]], 2/3 [[4 6]]}
-  (__ count [[1] [1 2] [3] [1 2 3] [2 3]]) :=
-   {1 [[1] [3]], 2 [[1 2] [2 3]], 3 [[1 2 3]]})
+ (__ #(> % 5) [1 3 6 8]) := {false [1 3], true [6 8]}
+ (__ #(apply / %) [[1 2] [2 4] [4 6] [3 6]]) :=
+ {1/2 [[1 2] [2 4] [3 6]], 2/3 [[4 6]]}
+ (__ count [[1] [1 2] [3] [1 2 3] [2 3]]) :=
+ {1 [[1] [3]], 2 [[1 2] [2 3]], 3 [[1 2 3]]})
 
 ;; Share your solution, and/or check how others did it:
 ;; https://gist.github.com/b49b9b1171a0d8340f94893a614a43ec

@@ -10,19 +10,28 @@
 ;; the parameters are true, but not all of the parameters
 ;; are true. Otherwise your function should return false.
 
-(def __ :tests-will-fail)
-
 (comment
-  
+  (def __ (fn [& bools]
+            (boolean
+             (and (some true? bools)
+                  (some false? bools)))))
+  ;; 
   )
 
+;; (comment
+(def __ not=)
+  ;; )
+
+(comment
+  (def bools '(true true true)))
+
 (tests
-  false := (__ false false)
-  true := (__ true false)
-  false := (__ true)
-  true := (__ false true false)
-  false := (__ true true true)
-  true := (__ true true true false))
+ false := (__ false false)
+ true := (__ true false)
+ false := (__ true)
+ true := (__ false true false)
+ false := (__ true true true)
+ true := (__ true true true false))
 
 ;; Share your solution, and/or check how others did it:
 ;; https://gist.github.com/7fa7142a58af04b16b35d31ab00248a6

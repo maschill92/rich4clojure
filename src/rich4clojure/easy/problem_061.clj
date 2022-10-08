@@ -11,10 +11,15 @@
 
 (def restricted [zipmap])
 
-(def __ :tests-will-fail)
+(def __ (fn [k v]
+          (apply hash-map (interleave k v))))
+
+(comment (def __ (fn [k v]
+          (apply merge (map hash-map k v)))))
 
 (comment
-  
+  (def k [:a :b :c])
+  (def v [1 2 3])
   )
 
 (tests

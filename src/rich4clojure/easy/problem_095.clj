@@ -11,10 +11,16 @@
 ;; tree must have a value, a left child, and a right
 ;; child.
 
-(def __ :tests-will-fail)
+(def __ (fn b-tree [t]
+          (cond
+            (nil? t) true
+            (not (sequential? t)) false
+            (not= 3 (count t)) false
+            :else
+            (and (b-tree (nth t 1)) (b-tree (nth t 2))))))
 
 (comment
-  
+  (def t [1 [2 [3 [4 false nil] nil] nil] nil])
   )
 
 (tests

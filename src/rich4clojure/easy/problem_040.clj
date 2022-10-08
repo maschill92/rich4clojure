@@ -12,7 +12,7 @@
 (def restricted [interpose])
 
 (def __ (fn [v l]
-          (apply vector (mapcat #(vector %1 v) (drop-last l)) (last l))))
+          (drop-last (mapcat #(vector %1 v)  l))))
 
 (comment
   (def v 0)

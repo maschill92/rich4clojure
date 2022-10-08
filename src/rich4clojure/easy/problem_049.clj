@@ -11,10 +11,12 @@
 
 (def restricted [split-at])
 
-(def __ :tests-will-fail)
+(def __ (fn [x l]
+          [(apply vector (take x l)) (apply vector (drop x l))]))
 
 (comment
-  
+  (def l [1 2 3 4 5 6])
+  (def x 3)
   )
 
 (tests

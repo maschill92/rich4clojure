@@ -10,7 +10,8 @@
 ;; multiple. Your function should accept a variable number
 ;; of positive integers or ratios.
 
-(def __ :tests-will-fail)
+(def __ (fn [& nums]
+          (apply * nums)))
 
 (comment
   

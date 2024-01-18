@@ -1,5 +1,6 @@
 (ns rich4clojure.medium.problem-070
-  (:require [hyperfiddle.rcf :refer [tests]]))
+  (:require [clojure.string :as string]
+            [hyperfiddle.rcf :refer [tests]]))
 
 ;; = Word Sorting =
 ;; By 4Clojure user: fotland
@@ -10,19 +11,21 @@
 ;; sorted list of words. Capitalization should not affect
 ;; sort order and punctuation should be ignored.
 
-(def __ :tests-will-fail)
+(def __ (fn [s]
+          (sort-by string/lower-case
+                   (string/split
+                    (string/replace s #"[.!]" "")
+                    #"\s+"))))
 
-(comment
-  
-  )
+(comment)
 
 (tests
-  (__  "Have a nice day.") :=
-   ["a" "day" "Have" "nice"]
-  (__  "Clojure is a fun language!") :=
-   ["a" "Clojure" "fun" "is" "language"]
-  (__  "Fools fall for foolish follies.") :=
-   ["fall" "follies" "foolish" "Fools" "for"])
+ (__  "Have a nice day.") :=
+ ["a" "day" "Have" "nice"]
+ (__  "Clojure is a fun language!") :=
+ ["a" "Clojure" "fun" "is" "language"]
+ (__  "Fools fall for foolish follies.") :=
+ ["fall" "follies" "foolish" "Fools" "for"])
 
 ;; Share your solution, and/or check how others did it:
 ;; https://gist.github.com/ede095348d09c012bb17854de2c26690

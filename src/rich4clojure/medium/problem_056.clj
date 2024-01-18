@@ -11,17 +11,22 @@
 
 (def restricted [distinct])
 
-(def __ :tests-will-fail)
+(def __ (fn my-dedupe [in]
+          (reduce
+           (fn [out in-item]
+             (if (some (set out) (vector in-item))
+               out
+               (conj (vec out) in-item)))
+           []
+           in)))
 
-(comment
-  
-  )
+(comment)
 
 (tests
-  (__ [1 2 1 3 1 2 4]) := [1 2 3 4]
-  (__ [:a :a :b :b :c :c]) := [:a :b :c]
-  (__ '([2 4] [1 2] [1 3] [1 3])) := '([2 4] [1 2] [1 3])
-  (__ (range 50)) := (range 50))
+ (__ [1 2 1 3 1 2 4]) := [1 2 3 4]
+ (__ [:a :a :b :b :c :c]) := [:a :b :c]
+ (__ '([2 4] [1 2] [1 3] [1 3])) := '([2 4] [1 2] [1 3])
+ (__ (range 50)) := (range 50))
 
 ;; Share your solution, and/or check how others did it:
 ;; https://gist.github.com/a509841669465f47ccd96fe847387b3e

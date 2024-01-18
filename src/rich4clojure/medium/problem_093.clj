@@ -12,7 +12,8 @@
 ;; should be a sequence of sequences with only one level
 ;; of nesting.
 
-(def __ :tests-will-fail)
+(def __ (fn [coll]
+          (flatten)))
 
 (comment
   

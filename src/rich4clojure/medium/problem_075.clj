@@ -1,5 +1,6 @@
 (ns rich4clojure.medium.problem-075
-  (:require [hyperfiddle.rcf :refer [tests]]))
+  (:require [clojure.math.numeric-tower :as math]
+            [hyperfiddle.rcf :refer [tests]]))
 
 ;; = Euler's Totient Function =
 ;; By 4Clojure user: dbyrne
@@ -12,17 +13,21 @@
 ;; Write a function which calculates Euler's totient
 ;; function.
 
-(def __ :tests-will-fail)
+(def __ (fn [n]
+          (if (= n 1)
+            1
+            (count
+             (filter
+              #(= 1 (math/gcd %1 n))
+              (range 1 n))))))
 
-(comment
-  
-  )
+(comment)
 
 (tests
-  (__ 1) := 1
-  (__ 10) := (count '(1 3 7 9)) 4
-  (__ 40) := 16
-  (__ 99) := 60)
+ (__ 1) := 1
+ (__ 10) := (count '(1 3 7 9)) 4
+ (__ 40) := 16
+ (__ 99) := 60)
 
 ;; Share your solution, and/or check how others did it:
 ;; https://gist.github.com/da5e5c50f14f015708f967e20b450874

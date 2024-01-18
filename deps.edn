@@ -1,5 +1,6 @@
 {:paths ["src"]
  :deps {org.clojure/clojure {:mvn/version "1.10.2"}
-        com.hyperfiddle/rcf {:mvn/version "20220926-202227"}}
+        com.hyperfiddle/rcf {:mvn/version "20220926-202227"}
+        org.clojure/math.numeric-tower {:mvn/version "0.0.5"}}
  :aliases
  {}}

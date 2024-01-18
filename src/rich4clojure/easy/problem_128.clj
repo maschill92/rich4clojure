@@ -28,19 +28,40 @@
 ;; ten will always be represented with the single
 ;; character "T", rather than the two characters "10".
 
-(def __ :tests-will-fail)
+(def suits {\D :diamond
+            \H :heart
+            \C :club
+            \S :spade})
 
-(comment
-  
-  )
+(def ranks {\2 0
+            \3 1
+            \4 2
+            \5 3
+            \6 4
+            \7 5
+            \8 6
+            \9 7
+            \T 8
+            \J 9
+            \Q 10
+            \K 11
+            \A 12})
+
+(def __ (fn [str]
+          (let [[suit rank] (seq str)]
+            (hash-map
+             :suit (get suits suit)
+             :rank (get ranks rank)))))
+
+(comment)
 
 (tests
-  {:suit :diamond :rank 10} := (__ "DQ")
-  {:suit :heart :rank 3} := (__ "H5")
-  {:suit :club :rank 12} := (__ "CA")
-  (range 13) := (map (comp :rank __ str)
-                   '[S2 S3 S4 S5 S6 S7
-                     S8 S9 ST SJ SQ SK SA]))
+ {:suit :diamond :rank 10} := (__ "DQ")
+ {:suit :heart :rank 3} := (__ "H5")
+ {:suit :club :rank 12} := (__ "CA")
+ (range 13) := (map (comp :rank __ str)
+                    '[S2 S3 S4 S5 S6 S7
+                      S8 S9 ST SJ SQ SK SA]))
 
 ;; Share your solution, and/or check how others did it:
 ;; https://gist.github.com/462630c19a4463c7a67c4af684c9f71e

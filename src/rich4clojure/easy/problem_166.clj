@@ -19,17 +19,19 @@
 ;; * x > y → :gt
 ;; * x < y → :lt
 
-(def __ :tests-will-fail)
+(def __ (fn [lt a b]
+          (cond
+           (lt a b) :lt
+           (lt b a) :gt
+           :else :eq)))
 
-(comment
-  
-  )
+(comment)
 
 (tests
-  :gt := (__ < 5 1)
-  :eq := (__ (fn [x y] (< (count x) (count y))) "pear" "plum")
-  :lt := (__ (fn [x y] (< (mod x 5) (mod y 5))) 21 3)
-  :gt := (__ > 0 2))
+ :gt := (__ < 5 1)
+ :eq := (__ (fn [x y] (< (count x) (count y))) "pear" "plum")
+ :lt := (__ (fn [x y] (< (mod x 5) (mod y 5))) 21 3)
+ :gt := (__ > 0 2))
 
 ;; Share your solution, and/or check how others did it:
 ;; https://gist.github.com/6057fba465c3af1d06a9703d4ebdc7d1

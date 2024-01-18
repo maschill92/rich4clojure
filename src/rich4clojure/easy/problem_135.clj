@@ -17,10 +17,15 @@
 ;; that does not do precedence and instead just calculates
 ;; left to right.
 
-(def __ :tests-will-fail)
+(def __ (fn calc [& terms]
+          (loop [v 0
+                 coll terms]
+            (if (empty? coll)
+              v
+              (recur (apply (second coll) [(first coll) (nth coll 3)]) (drop 3 coll))))))
 
 (comment
-  
+  (def coll '(38 + 48 - 2 / 2))
   )
 
 (tests

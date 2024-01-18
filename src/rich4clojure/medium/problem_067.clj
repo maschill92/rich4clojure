@@ -9,7 +9,14 @@
 ;; Write a function which returns the first x number of
 ;; prime numbers.
 
-(def __ :tests-will-fail)
+(defn prime? [n]
+  (cond
+    (or (= n 0) (= n 1)) false
+    (or (= n 2) (= n 3)) true
+    :else (= '(1) (filter #(= 0 (rem n %1)) (range 1 (inc (Math/sqrt n)))))))
+
+(def __ (fn [n]
+          (take n (filter prime? (range)))))
 
 (comment
   

@@ -15,17 +15,32 @@
 ;; loops endlessly. Write a function that determines if a
 ;; number is happy or not.
 
-(def __ :tests-will-fail)
+(defn summed-squares [n]
+  (apply + (map
+            (fn [s]
+              (let [i (Integer/parseInt s)]
+                (* i i)))
+            (clojure.string/split (str n) #""))))
+
+(def __ (fn calc [n]
+          (loop [seen #{}
+                 curr n]
+            (let [summed (summed-squares curr)]
+              (cond
+                (= summed 1) (do (println curr "is happy!") true)
+                (contains? seen curr) (do (println curr "is sad and we've already seen this number. Bummer!") false)
+                :else (do
+                        (println curr "is sad but hasn't seen. Trying again!")
+                        (recur (conj seen curr) summed)))))))
 
 (comment
-  
-  )
+  (__ 7))
 
 (tests
-  (__ 7) := true
-  (__ 986543210) := true
-  (__ 2) := false
-  (__ 3) := false)
+ (__ 7) := true
+ (__ 986543210) := true
+ (__ 2) := false
+ (__ 3) := false)
 
 ;; Share your solution, and/or check how others did it:
 ;; https://gist.github.com/b921948244dc0417fc716fe31cecb359

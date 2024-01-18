@@ -13,10 +13,11 @@
 ;; sub-sequences themselves can be returned in any order
 ;; (this is why 'set' is used in the test cases).
 
-(def __ :tests-will-fail)
+(def __ (fn [l]
+          (vals (group-by type l))))
 
 (comment
-  
+  (def l [1 :a 2 :b 3 :c])
   )
 
 (tests

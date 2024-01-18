@@ -12,16 +12,22 @@
 
 (def restricted [partition partition-all])
 
-(def __ :tests-will-fail)
+(defn part [n l]
+  (lazy-seq (when (>= (count l) n)
+              (cons (take n l) (part n (drop n l))))))
+
+(def __ part)
 
 (comment
-  
+  (def l (range 2))
+  (def n 3)
   )
 
+
 (tests
-  (__ 3 (range 9)) := '((0 1 2) (3 4 5) (6 7 8))
-  (__ 2 (range 8)) := '((0 1) (2 3) (4 5) (6 7))
-  (__ 3 (range 8)) := '((0 1 2) (3 4 5)))
+ (__ 3 (range 9)) := '((0 1 2) (3 4 5) (6 7 8))
+ (__ 2 (range 8)) := '((0 1) (2 3) (4 5) (6 7))
+ (__ 3 (range 8)) := '((0 1 2) (3 4 5)))
 
 ;; Share your solution, and/or check how others did it:
 ;; https://gist.github.com/1da137c7927d083dfbb4db1686a3e3cf

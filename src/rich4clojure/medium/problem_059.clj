@@ -13,16 +13,18 @@
 
 (def restricted [juxt])
 
-(def __ :tests-will-fail)
+(def __ (fn [& fns]
+          (fn [& args]
+            (map
+             #(apply %1 args)
+             fns))))
 
-(comment
-  
-  )
+(comment)
 
 (tests
-  [21 6 1] := ((__ + max min) 2 3 5 1 6 4)
-  ["HELLO" 5] := ((__ #(.toUpperCase %) count) "hello")
-  [2 6 4] := ((__ :a :c :b) {:a 2, :b 4, :c 6, :d 8 :e 10}))
+ [21 6 1] := ((__ + max min) 2 3 5 1 6 4)
+ ["HELLO" 5] := ((__ #(.toUpperCase %) count) "hello")
+ [2 6 4] := ((__ :a :c :b) {:a 2, :b 4, :c 6, :d 8 :e 10}))
 
 ;; Share your solution, and/or check how others did it:
 ;; https://gist.github.com/a986cefdc820ca22996a1c74948785d2

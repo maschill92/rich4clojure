@@ -27,24 +27,28 @@
 ;; 1 That is, (get-in original [k1 k2]) should be the
 ;; same as (get result [k1 k2])
 
-(def __ :tests-will-fail)
+(def __ (fn [m]
+           (apply merge (for [[k v] m
+                  [nk nv] v]
+              {[k nk] nv}))))
 
 (comment
-  
-  )
+  (def m '{a {p 1, q 2}
+           b {m 3, n 4}})
+  (__ m))
 
 (tests
-  (__ '{a {p 1, q 2}
-         b {m 3, n 4}}) :=
-   '{[a p] 1, [a q] 2
-     [b m] 3, [b n] 4}
-  (__ '{[1] {a b c d}
-         [2] {q r s t u v w x}}) :=
-   '{[[1] a] b, [[1] c] d,
-     [[2] q] r, [[2] s] t,
-     [[2] u] v, [[2] w] x}
-  (__ '{m {1 [a b c] 3 nil}}) :=
-   '{[m 1] [a b c], [m 3] nil})
+ (__ '{a {p 1, q 2}
+       b {m 3, n 4}}) :=
+ '{[a p] 1, [a q] 2
+   [b m] 3, [b n] 4}
+ (__ '{[1] {a b c d}
+       [2] {q r s t u v w x}}) :=
+ '{[[1] a] b, [[1] c] d,
+   [[2] q] r, [[2] s] t,
+   [[2] u] v, [[2] w] x}
+ (__ '{m {1 [a b c] 3 nil}}) :=
+ '{[m 1] [a b c], [m 3] nil})
 
 ;; Share your solution, and/or check how others did it:
 ;; https://gist.github.com/47dc764177c635896e91c4e4a090903c

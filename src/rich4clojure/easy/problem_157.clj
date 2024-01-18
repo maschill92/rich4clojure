@@ -10,7 +10,8 @@
 ;; containing the original elements along with their
 ;; index.
 
-(def __ :tests-will-fail)
+(def __ (fn [v] 
+          (map-indexed #(vector %2 %1) v)))
 
 (comment
   

@@ -1,5 +1,6 @@
 (ns rich4clojure.easy.problem-107
-  (:require [hyperfiddle.rcf :refer [tests]]))
+  (:require [hyperfiddle.rcf :refer [tests]]
+            [clojure.math.numeric-tower :refer [expt]]))
 
 ;; = Simple closures =
 ;; By 4Clojure user: amalloy
@@ -22,7 +23,8 @@
 ;; that the effect of this is to preserve the value of n
 ;; for use outside the scope in which it is defined.
 
-(def __ :tests-will-fail)
+(def __ (fn [n] (fn [x] (expt x n))))
+
 
 (comment
   

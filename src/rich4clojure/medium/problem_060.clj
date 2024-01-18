@@ -13,16 +13,23 @@
 
 (def restricted [reductions])
 
-(def __ :tests-will-fail)
+(def __ (fn my-reductions
+          ([f coll]
+           (my-reductions f (first coll) (rest coll)))
 
-(comment
-  
-  )
+          ([f init coll]
+           (cons init
+                 (lazy-seq
+                  (when-let [s (seq coll)]
+                    (my-reductions f (f init (first s)) (rest s))))))))
+
+
+(comment)
 
 (tests
-  (take 5 (__ + (range))) := [0 1 3 6 10]
-  (__ conj [1] [2 3 4]) := [[1] [1 2] [1 2 3] [1 2 3 4]]
-  (last (__ * 2 [3 4 5])) := (reduce * 2 [3 4 5]) 120)
+ (take 5 (__ + (range))) := [0 1 3 6 10]
+ (__ conj [1] [2 3 4]) := [[1] [1 2] [1 2 3] [1 2 3 4]]
+ (last (__ * 2 [3 4 5])) := (reduce * 2 [3 4 5]) 120)
 
 ;; Share your solution, and/or check how others did it:
 ;; https://gist.github.com/4688fc26154649a2735f14264938fa3b
